@@ -1,50 +1,54 @@
 package prog2.exercise4.flight.booking.system;
 
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String args[]) throws ParseException {
+public class Main 
+{
+    public static void main( String[] args )
+    {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please enter your full name: ");
+        String passengerFullName = input.nextLine();
+        System.out.println("Please enter your year of departure: ");
+        int dYear = input.nextInt();
+        System.out.println("Please enter your month of departure: ");
+        int dMonth = input.nextInt();
+        System.out.println("Please enter your day of departure: ");
+        int dDay = input.nextInt();
+        System.out.println("Please enter your year of return: ");
+        int rYear = input.nextInt();
+        System.out.println("Please enter your month of return: ");
+        int rMonth = input.nextInt();
+        System.out.println("Please enter your day of return: ");
+        int rDay = input.nextInt();
+        System.out.println("Please enter how many children tickets do you need: ");
+        int childPassengers = input.nextInt();
+        System.out.println("Please enter how many adult tickets do you need: ");
+        int adultPassengers = input.nextInt();
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter your full name");
-        String name = scanner.next();
 
-        System.out.println("Please select the date of departure(like 2023-03-07)");
-        String departure1 = scanner.next();
-        LocalDate departure = LocalDate.parse(departure1);
 
-        System.out.println("Please select the date of return(like 2023-03-07)");
-        String return2 = scanner.next();
-        LocalDate return1 = LocalDate.parse(return2);
 
-        System.out.println("Please enter the number of children");
-        int child = scanner.nextInt();
+        LocalDate departureDate =  LocalDate.of(dYear, dMonth, dDay);
+        LocalDate returnDate =  LocalDate.of(rYear, rMonth, rDay);
+        input.close();
 
-        System.out.println("Please enter the number of adults");
-        int adults = scanner.nextInt();
+        FlightBooking family1 = new FlightBooking(passengerFullName, departureDate, returnDate, childPassengers, adultPassengers);
 
-        FlightBooking flightbooking = new FlightBooking(name,departure,return1,child,adults);
-        System.out.println("Please choose the class of travel (Enter 1 for First, 2 for Business, 3 for Economy):");
-        String choice1 = scanner.next();
-        flightbooking.setBookingClass(choice1);
 
-        System.out.println("Please choose the trip type(Enter 1 for One way, 2 for Return)");
-        String choice2 = scanner.next();
-        flightbooking.setTripType(choice2);
+        family1.setTripSource("1");
+        family1.setTripDestination("1", "2");
+        family1.setReturnDate(returnDate);
+        family1.setTripType("2");
+        family1.setBookingClass("1");
 
-        System.out.println("Please choose the trip source(Enter 1 for Nanjing, 2 for Beijing, 3 for Oulu, 4 for Helsinki) ");
-        String source = scanner.next();
-        flightbooking.setTripSource(source);
+        family1.setDepartingTicketPrice(2, 5);
+        family1.setReturnTicketPrice();
 
-        System.out.println("Please choose the trip destination(Enter 1 for Nanjing, 2 for Beijing, 3 for Oulu, 4 for Helsinki)");
-        String destination = scanner.next();
-        flightbooking.setTripDestination(source,destination);
-        flightbooking.setClassification(source,destination);
+        family1.setTotalTicketPrice();
 
-        System.out.println(flightbooking);
-
+        System.out.println(family1.StringOption1());
+        
     }
-
 }
