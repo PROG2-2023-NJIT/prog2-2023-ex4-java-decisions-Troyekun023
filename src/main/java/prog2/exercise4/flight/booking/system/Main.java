@@ -1,54 +1,64 @@
 package prog2.exercise4.flight.booking.system;
 
-import java.time.LocalDate;
+
 import java.util.Scanner;
 
-public class Main 
-{
-    public static void main( String[] args )
-    {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Please enter your full name: ");
-        String passengerFullName = input.nextLine();
-        System.out.println("Please enter your year of departure: ");
-        int dYear = input.nextInt();
-        System.out.println("Please enter your month of departure: ");
-        int dMonth = input.nextInt();
-        System.out.println("Please enter your day of departure: ");
-        int dDay = input.nextInt();
-        System.out.println("Please enter your year of return: ");
-        int rYear = input.nextInt();
-        System.out.println("Please enter your month of return: ");
-        int rMonth = input.nextInt();
-        System.out.println("Please enter your day of return: ");
-        int rDay = input.nextInt();
-        System.out.println("Please enter how many children tickets do you need: ");
-        int childPassengers = input.nextInt();
-        System.out.println("Please enter how many adult tickets do you need: ");
-        int adultPassengers = input.nextInt();
+
+import java.time.LocalDate;
+
+public class Main{
+    public static void main(String[] args) {
+        Scanner GQK = new Scanner(System.in);
+
+        System.out.println("What is your name?");
+        String name1 = GQK.nextLine();
+
+        System.out.println("Give me the class you want to book (1:first, 2:bussiness, 3:economic) :");
+        String str = GQK.nextLine();
+
+        System.out.println("Give me the trip type you want to make (1:oneway, 2:return) :");
+        String str2 = GQK.nextLine();
+
+        System.out.println("Please give me where you from (1 for NANJING, 2 for BEIJING,3 for SHANGHAI,4 for OULU,5 for HELSINKI,6 for PARIS) :");
+        String str3 = GQK.nextLine();  
+
+        System.out.println("Please give me where you go (1 for NANJING, 2 for BEIJING,3 for SHANGHAI,4 for OULU,5 for HELSINKI,6 for PARIS) :");
+        String str4 = GQK.nextLine(); 
+
+        System.out.println("Give me the date  you depart in YYYY-MM-DD");
+        String dep = GQK.nextLine();
+        LocalDate departure = LocalDate.parse(dep);
 
 
+        System.out.println("Give me the date  you return in theYYYY-MM-DD ");
+        String ret = GQK.nextLine();
+        LocalDate returning = LocalDate.parse(ret);
 
+        System.out.println("How many children?");
+        int childs = GQK.nextInt(); 
 
-        LocalDate departureDate =  LocalDate.of(dYear, dMonth, dDay);
-        LocalDate returnDate =  LocalDate.of(rYear, rMonth, rDay);
-        input.close();
+        System.out.println("How many children?");
+        int adults = GQK.nextInt(); 
 
-        FlightBooking family1 = new FlightBooking(passengerFullName, departureDate, returnDate, childPassengers, adultPassengers);
+        GQK.close();
 
+        FlightBooking FB1 = new FlightBooking(name1,departure,returning,childs,adults);
 
-        family1.setTripSource("1");
-        family1.setTripDestination("1", "2");
-        family1.setReturnDate(returnDate);
-        family1.setTripType("2");
-        family1.setBookingClass("1");
-
-        family1.setDepartingTicketPrice(2, 5);
-        family1.setReturnTicketPrice();
-
-        family1.setTotalTicketPrice();
-
-        System.out.println(family1.StringOption1());
+        FB1.setBookingClass(str);
+        FB1.setTripType(str2);
+        FB1.setTripSource(str3);
+        FB1.setTripDestination(str3, str4);
         
+        FB1.setDepartureDate(departure);
+        FB1.setReturnDate(returning);
+
+        FB1.getTicketNumber();
+
+        FB1.setDepartingTicketPrice(childs,adults);
+        FB1.setReturnTicketPrice();
+        FB1.setTotalTicketPrice();
+
+
+        System.out.println(FB1);
     }
-}
+    }
